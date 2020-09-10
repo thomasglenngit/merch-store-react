@@ -1,13 +1,14 @@
 import React from 'react';
 import DisplayWindow from './DisplayWindow';
 import Header from './Header';
+import { Container } from 'react-bootstrap';
 
 function App() {
   return(
-    <div className="container">
+    <Container fluid>
       <Header />
       <DisplayWindow />
-    </div>
+    </Container>
   )
 }
 

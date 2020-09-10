@@ -1,17 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { Card } from 'react-bootstrap';
+import Card from 'react-bootstrap/Card';
 
 function Product(props) {
   return (
-    <div className="card">
-      <div className="card-header">
-        <h3 className="card-title">{props.name}</h3>
-      </div>
-      <div className="card-body">
-        <p>{props.price}</p>
-      </div>
-    </div>
+    <Card>
+      <Card.Header as='h5'>{props.name}</Card.Header>
+      <Card.Body>
+        <Card.Text>${props.price}</Card.Text>
+      </Card.Body>
+    </Card>
   )
 }
 

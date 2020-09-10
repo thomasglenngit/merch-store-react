@@ -1,23 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Product from './Product';
+import CardColumns from 'react-bootstrap/CardColumns';
+import Button from 'react-bootstrap/Button';
 
 function ProductList(props) {
-  function handleAddProduct() {
-    props.onLinkClick('create');
-  }
-
   return (
     <React.Fragment>
-      <div className="card-columns">
+      <CardColumns>
         {props.productList.map((products) => 
           <Product
             name={products.name}
             price={products.price}
             key={products.id} />
         )}
-      </div>
-      <button className="btn btn-primary" type='button' onClick={handleAddProduct}>Add Product</button>
+      </CardColumns>
+      <Button variant='primary' type='button' size='lg' block onClick={()=>props.onLinkClick('create')}>Add Product</Button>
     </React.Fragment>
   )
 }
