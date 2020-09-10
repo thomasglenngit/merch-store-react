@@ -1,6 +1,6 @@
 import React from 'react';
 import ProductList from './ProductList';
-import ProductForm from './ProductForm';
+import AddProduct from './AddProduct';
 import ProductDetails from './ProductDetails';
 
 class DisplayWindow extends React.Component {
@@ -62,9 +62,9 @@ class DisplayWindow extends React.Component {
         onLinkClick = {this.handleLinks}
         onProductClick = {this.handleViewingDetails} />
     } else if (this.state.currentPage === 'create') {
-      pageToDisplay = <ProductForm 
+      pageToDisplay = <AddProduct 
         onLinkClick = {this.handleLinks}
-        onProductFormSubmit = {this.handleAddingNewProduct} />
+        onAddingProduct = {this.handleAddingNewProduct} />
     } else if (this.state.currentPage === 'details') {
       pageToDisplay = <ProductDetails
         product = {this.state.currentProduct}

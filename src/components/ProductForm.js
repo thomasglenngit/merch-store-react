@@ -1,24 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { v1 } from 'uuid';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 
 function ProductForm(props) {
-  function handleFormSubmit(event) {
+  const { onLinkClick, onSubmittingForm } = props;
+
+  function handleSubmittingForm(event) {
     event.preventDefault();
-    props.onProductFormSubmit({
-      name: event.target.name.value,
-      price: event.target.price.value,
-      description: event.target.description.value,
-      id: v1()
-    });
+    onSubmittingForm(event);
   }
 
   return(
     <React.Fragment>
-      <Form onSubmit={handleFormSubmit}>
+      <Form onSubmit={handleSubmittingForm}>
         <Form.Group controlId="name">
           <Form.Label>Product Name</Form.Label>
           <Form.Control type='text' placeholder='Product Name' required />
@@ -39,14 +35,14 @@ function ProductForm(props) {
         </Form.Group>
         <Button variant='success' type="submit" size='lg' block>Add Product</Button>
       </Form>
-      <Button variant='secondary' type='button' size='lg' block onClick={()=>props.onLinkClick("index")}>Back To Index</Button>
+      <Button variant='secondary' type='button' size='lg' block onClick={()=>onLinkClick("index")}>Back To Index</Button>
     </React.Fragment>
   )
 }
 
 ProductForm.propTypes = {
   onLinkClick: PropTypes.func,
-  onProductFormSubmit: PropTypes.func
+  onSubmittingForm: PropTypes.func
 }
 
 export default ProductForm;
