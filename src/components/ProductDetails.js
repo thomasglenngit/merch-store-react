@@ -16,8 +16,6 @@ function ProductDetails(props) {
   );
 }
 
-
-
 ProductDetails.propTypes = {
   product: PropTypes.object,
   onLinkClick: PropTypes.func,
