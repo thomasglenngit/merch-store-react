@@ -33,9 +33,9 @@ function ProductForm(props) {
           <Form.Label>Description</Form.Label>
           <Form.Control as='textarea' rows='5' defaultValue={defaultDescription} />
         </Form.Group>
-        <Button variant='success' type="submit" size='lg' block>{buttonText}</Button>
+        <Button className='mb-3' variant='success' type="submit" size='lg' block>{buttonText}</Button>
       </Form>
-      <Button variant='secondary' type='button' size='lg' block onClick={()=>onLinkClick("index")}>Back To Index</Button>
+      <Button className='mb-3' variant='secondary' type='button' size='lg' block onClick={()=>onLinkClick("index")}>Back To Index</Button>
     </React.Fragment>
   )
 }

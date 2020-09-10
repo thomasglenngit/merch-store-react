@@ -1,4 +1,8 @@
 import React from 'react';
+import baskarts from './../baskarts.jpeg';
+import Image from 'react-bootstrap/Image';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 function Header() {
   const headerStyle = {
@@ -10,11 +14,23 @@ function Header() {
     marginBottom: '10px'
   }
   const h1Header = {
+    color: 'black',
     fontWeight: 'bold'
+  }
+  const img = {
+    maxWidth: '450px',
+    maxHeight: '450px'
   }
   return (
     <div className="page-header" style={headerStyle}>
-      <h1 style={h1Header}>Revenge of Pierre</h1>
+      <Row>
+        <Col md={5} >
+          <h1 style={h1Header}>Revenge of Pierre</h1>
+        </Col>
+        <Col md={4}>
+          <Image src={baskarts} style={img} />
+        </Col>
+      </Row>
     </div>
   )
 }

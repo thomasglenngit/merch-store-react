@@ -11,9 +11,9 @@ function ProductDetails(props) {
       <h2>{product.name}</h2>
       <p>{product.description}</p>
       <p>{product.price}</p>
-      <Button variant='secondary' type='button' size='lg' block onClick={()=>onLinkClick('index')}>Back To Index</Button>
+      <Button className='mb-3' variant='secondary' type='button' size='lg' block onClick={()=>onLinkClick('index')}>Back To Index</Button>
+      <Button className='mb-3' variant='warning' type='button' size='lg' block onClick={()=>onEditClick(product.id)}>Edit</Button>
       <Button variant='danger' type='button' size='lg' block onClick={()=>onDeleteClick(product.id)}>Delete</Button>
-      <Button variant='success' type='button' size='lg' block onClick={()=>onEditClick(product.id)}>Edit</Button>
     </React.Fragment>
   );
 }
