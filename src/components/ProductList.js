@@ -10,8 +10,10 @@ function ProductList(props) {
       <CardColumns>
         {props.productList.map((products) => 
           <Product
+            onProductClick={props.onProductClick}
             name={products.name}
             price={products.price}
+            id={products.id}
             key={products.id} />
         )}
       </CardColumns>
@@ -22,7 +24,8 @@ function ProductList(props) {
 
 ProductList.propTypes = {
   productList: PropTypes.array,
-  onLinkClink: PropTypes.func
+  onLinkClink: PropTypes.func,
+  onProductClick: PropTypes.func
 }
 
 export default ProductList;

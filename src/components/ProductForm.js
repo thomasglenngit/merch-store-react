@@ -21,7 +21,7 @@ function ProductForm(props) {
       <Form onSubmit={handleFormSubmit}>
         <Form.Group controlId="name">
           <Form.Label>Product Name</Form.Label>
-          <Form.Control type='text' placeholder='Product Name' />
+          <Form.Control type='text' placeholder='Product Name' required />
         </Form.Group>
         <Form.Group controlId="price">
           <Form.Label>Price</Form.Label>
@@ -29,8 +29,9 @@ function ProductForm(props) {
             <InputGroup.Prepend>
               <InputGroup.Text>$</InputGroup.Text>
             </InputGroup.Prepend>
-            <Form.Control type='text' placeholder='Price' pattern='^\d+\.\d{2}$'/>
+            <Form.Control type='text' placeholder='0.00' pattern='^\d+\.\d{2}$' required />
           </InputGroup>
+          <Form.Text className='text-muted'>Format as a decimal (e.g. 49.99 or 150.00)</Form.Text>
         </Form.Group>
         <Form.Group controlId="description">
           <Form.Label>Description</Form.Label>
