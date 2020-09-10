@@ -37,6 +37,15 @@ class DisplayWindow extends React.Component {
     });
   }
 
+  handleDeleteProduct = (id) => {
+    const newMasterList = this.state.masterList.filter(products => products.id !== id);
+    this.setState({
+      masterList: newMasterList,
+      currentPage: 'index',
+      currentProduct: null
+    })
+  }
+
   handleViewingDetails = (id) => {
     const productToView = this.state.masterList.filter(products => products.id === id)[0];
     this.setState({
@@ -59,7 +68,8 @@ class DisplayWindow extends React.Component {
     } else if (this.state.currentPage === 'details') {
       pageToDisplay = <ProductDetails
         product = {this.state.currentProduct}
-        onLinkClick = {this.handleLinks} />
+        onLinkClick = {this.handleLinks} 
+        onDeleteClick ={this.handleDeleteProduct}/>
     }
     return (
       <React.Fragment>
