@@ -4,8 +4,10 @@ import v1 from 'uuid';
 import ProductForm from './ProductForm';
 
 function AddProduct(props) {
+  const { onLinkClick, onAddingProduct } = props;
+
   function handleAddingNewProduct(event) {
-    props.onAddingProduct({
+    onAddingProduct({
       name: event.target.name.value,
       price: event.target.price.value,
       description: event.target.description.value,
@@ -15,7 +17,7 @@ function AddProduct(props) {
 
   return (
     <ProductForm
-      onLinkClick={props.onLinkClick}
+      onLinkClick={onLinkClick}
       onSubmittingForm={handleAddingNewProduct}
       buttonText="Add Product" />
   )

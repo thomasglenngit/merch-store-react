@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 
 function Product(props) {
+  const { name, price, id, onProductClick } = props;
   return (
-    <Card onClick={()=>props.onProductClick(props.id)}>
-      <Card.Header as='h5'>{props.name}</Card.Header>
+    <Card onClick={()=>onProductClick(id)}>
+      <Card.Header as='h5'>{name}</Card.Header>
       <Card.Body>
-        <Card.Text>${props.price}</Card.Text>
+        <Card.Text>${price}</Card.Text>
       </Card.Body>
     </Card>
   )
