@@ -15,7 +15,9 @@ function AddProduct(props) {
 
   return (
     <ProductForm
-      onSubmittingForm={handleAddingNewProduct} />
+      onLinkClick={props.onLinkClick}
+      onSubmittingForm={handleAddingNewProduct}
+      buttonText="Add Product" />
   )
 }
 

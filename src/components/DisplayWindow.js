@@ -1,6 +1,7 @@
 import React from 'react';
 import ProductList from './ProductList';
 import AddProduct from './AddProduct';
+import EditProduct from './EditProduct';
 import ProductDetails from './ProductDetails';
 
 class DisplayWindow extends React.Component {
@@ -9,22 +10,13 @@ class DisplayWindow extends React.Component {
     this.state = { 
       masterList: [],
       currentPage: 'index',
-      currentProductId: null,
       currentProduct: null
     };
   }
 
   handleLinks = (pageName) => {
     this.setState({
-      currentPage: pageName,
-      currentProductId: null 
-    });
-  }
-
-  handleIDLinks = (pageName, id) => {
-    this.setState({
-      currentPage: pageName,
-      currentProductId: id
+      currentPage: pageName
     });
   }
 
@@ -33,8 +25,30 @@ class DisplayWindow extends React.Component {
     this.setState({
       masterList: newMasterList,
       currentPage: 'index',
-      currentProductId: null
     });
+  }
+
+  handleClickingEdit = (id) => {
+    const productToEdit = this.state.masterList.filter(products => products.id === id)[0];
+    this.setState({
+      currentPage: 'edit',
+      currentProduct: productToEdit
+    });
+  }
+
+  handleEditProduct = (editedProduct) => {
+    const newMasterList = this.state.masterList.map(products => {
+      if (editedProduct.id === products.id) {
+        return editedProduct;
+      } else {
+        return products;
+      }
+    });
+    this.setState({
+      masterList: newMasterList,
+      currentPage: 'details',
+      currentProduct: editedProduct
+    }); 
   }
 
   handleDeleteProduct = (id) => {
@@ -43,7 +57,7 @@ class DisplayWindow extends React.Component {
       masterList: newMasterList,
       currentPage: 'index',
       currentProduct: null
-    })
+    });
   }
 
   handleViewingDetails = (id) => {
@@ -51,7 +65,7 @@ class DisplayWindow extends React.Component {
     this.setState({
       currentPage: 'details',
       currentProduct: productToView
-    })
+    });
   }
 
   render() {
@@ -69,7 +83,18 @@ class DisplayWindow extends React.Component {
       pageToDisplay = <ProductDetails
         product = {this.state.currentProduct}
         onLinkClick = {this.handleLinks} 
-        onDeleteClick ={this.handleDeleteProduct}/>
+        onDeleteClick ={this.handleDeleteProduct}
+        onEditClick = {this.handleClickingEdit} />
+    } else if (this.state.currentPage === 'edit') {
+      pageToDisplay = <EditProduct
+        product = {this.state.currentProduct}
+        onLinkClick = {this.handleLinks}
+        onEditProduct = {this.handleEditProduct}/>
+    } else if (this.state.currentPage === 'edit') {
+      pageToDisplay = <EditProduct
+        product = {this.state.currentProduct}
+        onLinkClick = {this.handleLinks}
+        onEditProduct = {this.handleEditProduct}/>
     }
     return (
       <React.Fragment>

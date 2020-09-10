@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 
 function ProductForm(props) {
-  const { onLinkClick, onSubmittingForm } = props;
+  const { onLinkClick, onSubmittingForm, buttonText, defaultName, defaultPrice, defaultDescription } = props;
 
   function handleSubmittingForm(event) {
     event.preventDefault();
@@ -17,7 +17,7 @@ function ProductForm(props) {
       <Form onSubmit={handleSubmittingForm}>
         <Form.Group controlId="name">
           <Form.Label>Product Name</Form.Label>
-          <Form.Control type='text' placeholder='Product Name' required />
+          <Form.Control type='text' placeholder='Product Name' defaultValue={defaultName} required />
         </Form.Group>
         <Form.Group controlId="price">
           <Form.Label>Price</Form.Label>
@@ -25,15 +25,15 @@ function ProductForm(props) {
             <InputGroup.Prepend>
               <InputGroup.Text>$</InputGroup.Text>
             </InputGroup.Prepend>
-            <Form.Control type='text' placeholder='0.00' pattern='^\d+\.\d{2}$' required />
+            <Form.Control type='text' placeholder='0.00' defaultValue={defaultPrice} pattern='^\d+\.\d{2}$' required />
           </InputGroup>
           <Form.Text className='text-muted'>Format as a decimal (e.g. 49.99 or 150.00)</Form.Text>
         </Form.Group>
         <Form.Group controlId="description">
           <Form.Label>Description</Form.Label>
-          <Form.Control as='textarea' rows='5' />
+          <Form.Control as='textarea' rows='5' defaultValue={defaultDescription} />
         </Form.Group>
-        <Button variant='success' type="submit" size='lg' block>Add Product</Button>
+        <Button variant='success' type="submit" size='lg' block>{buttonText}</Button>
       </Form>
       <Button variant='secondary' type='button' size='lg' block onClick={()=>onLinkClick("index")}>Back To Index</Button>
     </React.Fragment>
@@ -41,8 +41,12 @@ function ProductForm(props) {
 }
 
 ProductForm.propTypes = {
-  onLinkClick: PropTypes.func,
-  onSubmittingForm: PropTypes.func
+  onLinkClick: PropTypes.func.isRequired,
+  onSubmittingForm: PropTypes.func.isRequired,
+  buttonText: PropTypes.string.isRequired,
+  defaultName: PropTypes.string,
+  defaultPrice: PropTypes.string,
+  defaultDescription: PropTypes.string
 }
 
 export default ProductForm;

@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
+import { propTypes } from 'react-bootstrap/esm/Image';
 
 function ProductDetails(props) {
-  const { product, onLinkClick, onDeleteClick } = props;
+  const { product, onLinkClick, onDeleteClick, onEditClick } = props;
   
   return (
     <React.Fragment>
@@ -12,6 +13,7 @@ function ProductDetails(props) {
       <p>{product.price}</p>
       <Button variant='secondary' type='button' size='lg' block onClick={()=>onLinkClick('index')}>Back To Index</Button>
       <Button variant='danger' type='button' size='lg' block onClick={()=>onDeleteClick(product.id)}>Delete</Button>
+      <Button variant='success' type='button' size='lg' block onClick={()=>onEditClick(product.id)}>Edit</Button>
     </React.Fragment>
   );
 }
@@ -19,7 +21,8 @@ function ProductDetails(props) {
 ProductDetails.propTypes = {
   product: PropTypes.object,
   onLinkClick: PropTypes.func,
-  onDeleteClick: PropTypes.func
+  onDeleteClick: PropTypes.func,
+  onEditClick: propTypes.func
 }
 
 export default ProductDetails;
