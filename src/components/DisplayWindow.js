@@ -3,6 +3,7 @@ import ProductList from './ProductList';
 import AddProduct from './AddProduct';
 import EditProduct from './EditProduct';
 import ProductDetails from './ProductDetails';
+import { connect } from 'react-redux';
 
 class DisplayWindow extends React.Component {
   constructor(props) {
@@ -103,5 +104,7 @@ class DisplayWindow extends React.Component {
     )
   }
 }
+
+DisplayWindow = connect()(DisplayWindow); //higher order component - wraps an existing func. with additional functionality, then returns it so it can be used elsewhere in the application.
 
 export default DisplayWindow;
