@@ -121,6 +121,16 @@ class DisplayWindow extends React.Component {
   }
 }
 
+DisplayWindow.propTypes = {
+  masterProductList: PropTypes.object
+};
+
+const mapStateToProps = state => {
+  return {
+    masterProductList: state
+  }
+}
+
 DisplayWindow = connect(mapStateToProps)(DisplayWindow); //higher order component - wraps an existing func. with additional functionality, then returns it so it can be used elsewhere in the application.
 
 export default DisplayWindow;
