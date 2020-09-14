@@ -4,12 +4,14 @@ import AddProduct from './AddProduct';
 import EditProduct from './EditProduct';
 import ProductDetails from './ProductDetails';
 import { connect } from 'react-redux';
+import reducer from './reducers/product-list-reducer';
+import PropTypes from 'prop-types';
 
 class DisplayWindow extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = { 
-      masterList: [],
       currentPage: 'index',
       currentProduct: null
     };
@@ -22,9 +24,17 @@ class DisplayWindow extends React.Component {
   }
 
   handleAddingNewProduct = (newProduct) => {
-    const newMasterList = this.state.masterList.concat(newProduct);
+    const { dispatch } = this.props;
+    const { name, description, price, id } = newProduct;
+    const action = {
+      type: 'ADD_PRODUCT',
+      name: name,
+      description: description,
+      price: price,
+      id: id
+    }
+    dispatch(action);
     this.setState({
-      masterList: newMasterList,
       currentPage: 'index',
     });
   }
@@ -38,24 +48,30 @@ class DisplayWindow extends React.Component {
   }
 
   handleEditProduct = (editedProduct) => {
-    const newMasterList = this.state.masterList.map(products => {
-      if (editedProduct.id === products.id) {
-        return editedProduct;
-      } else {
-        return products;
-      }
-    });
+    const { dispatch } = this.props;
+    const { name, description, price, id } = editedProduct;
+    const action = {
+      type: 'ADD_PRODUCT',
+      name: name,
+      description: description,
+      price: price,
+      id: id,
+    }
+    dispatch(action);
     this.setState({
-      masterList: newMasterList,
       currentPage: 'details',
       currentProduct: editedProduct
     }); 
   }
 
   handleDeleteProduct = (id) => {
-    const newMasterList = this.state.masterList.filter(products => products.id !== id);
+    const { dispatch } = this.props;
+    const action = {
+      type: 'DELETE_PRODUCT',
+      id: id
+    }
+    dispatch(action);
     this.setState({
-      masterList: newMasterList,
       currentPage: 'index',
       currentProduct: null
     });
@@ -105,6 +121,6 @@ class DisplayWindow extends React.Component {
   }
 }
 
-DisplayWindow = connect()(DisplayWindow); //higher order component - wraps an existing func. with additional functionality, then returns it so it can be used elsewhere in the application.
+DisplayWindow = connect(mapStateToProps)(DisplayWindow); //higher order component - wraps an existing func. with additional functionality, then returns it so it can be used elsewhere in the application.
 
 export default DisplayWindow;
