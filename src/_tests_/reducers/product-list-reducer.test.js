@@ -2,7 +2,6 @@ import productListReducer from '../../reducers/product-list-reducer';
 
 describe('productListReducer', () => {
   
-  let action;
   const currentState = {
     1: { name: 'Air Ryan',
     description: 'Shoes',
@@ -13,6 +12,14 @@ describe('productListReducer', () => {
     price: '$500.00',
     id: 2 }
   }
+
+  let action;
+  const productData = {
+    name: 'Air Ryan',
+    description: 'Shoes',
+    price: '$50.00',
+    id: 1
+  };
   
   test('Should return default state if there is no action type passed into the reducer', () => {
     expect(productListReducer({}, { type: null })).toEqual({});
