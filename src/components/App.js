@@ -6,8 +6,8 @@ import Footer from './Footer';
 
 function App() {
   const bodyStyle = {
-    backgroundColor: 'black',
-    color: 'white',
+    backgroundColor: 'white',
+    color: 'black',
     minHeight: '100vh'
   }
   return(
