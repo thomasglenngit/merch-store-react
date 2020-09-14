@@ -4,6 +4,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
+import { createStore } from 'redux';
+import reducer from './reducers/ticket-list-reducer';
+
+const store = createStore(reducer);
 
 ReactDOM.render(
   <React.StrictMode>
